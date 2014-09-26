@@ -1,5 +1,7 @@
 package pl.touk.wasjawa.java8.exercise.ex08;
 
+import java.util.function.Supplier;
+
 public class StupidLogger {
     private final LoggerMode mode;
 
@@ -31,33 +33,33 @@ public class StupidLogger {
         return mode.getLevel() >= expectedMode.getLevel();
     }
 
-    public void trace(String msg) {
+    public void trace(Supplier<String> msg) {
         if (isTraceEnable()) {
             System.out.println(msg);
         }
     }
 
-    public void debug(String msg) {
+    public void debug(Supplier<String> msg) {
         if (isDebugEnable()) {
-            System.out.println(msg);
+            System.out.println(msg.get());
         }
     }
 
-    public void info(String msg) {
+    public void info(Supplier<String> msg) {
         if (isInfoEnable()) {
-            System.out.println(msg);
+            System.out.println(msg.get());
         }
     }
 
-    public void warn(String msg) {
+    public void warn(Supplier<String> msg) {
         if (isWarnEnable()) {
-            System.out.println(msg);
+            System.out.println(msg.get());
         }
     }
 
-    public void error(String msg) {
+    public void error(Supplier<String> msg) {
         if (isErrorEnable()) {
-            System.out.println(msg);
+            System.out.println(msg.get());
         }
     }
 }
