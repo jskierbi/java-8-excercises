@@ -44,13 +44,13 @@ public class StockService {
 			return Acc::new;
 		}
 		@Override public BiConsumer<Acc, Stock> accumulator() {
-			return (acc, stock) -> acc.accumulate(stock);
+			return Acc::accumulate;
 		}
 		@Override public BinaryOperator<Acc> combiner() {
 			return (first, second) -> first.add(second);
 		}
 		@Override public Function<Acc, BigDecimalStats> finisher() {
-			return (acc) -> acc.finish();
+			return Acc::finish;
 		}
 		@Override public Set<Characteristics> characteristics() {
 			return EnumSet.of(Characteristics.UNORDERED);
@@ -65,12 +65,7 @@ public class StockService {
 		private BigInteger count = BigInteger.ZERO;
 
 		public void accumulate(Stock stock) {
-//			BigDecimal price = stock.getPrice();
-//			min = Optional.of(price.min(min.orElse(price)));
-//			max = Optional.of(price.max(max.orElse(price)));
-
 			BigDecimal price = stock.getPrice();
-
 			min = Optional.of(price.min(min.orElse(price)));
 			max = Optional.of(price.max(max.orElse(price)));
 			sum = sum.add(stock.getPrice());
@@ -78,7 +73,6 @@ public class StockService {
 		}
 
 		public Acc add(Acc other) {
-
 			min = Stream.of(min, other.min)
 					.filter(Optional::isPresent)
 					.map(Optional::get)
