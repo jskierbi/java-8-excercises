@@ -10,6 +10,14 @@ import java.util.stream.Collectors;
 public class MovieService {
 
 	public List<String> polishActorNames(Movie movie) {
+//		List<String> polishActorNames = new ArrayList<>();
+//		for (Actor actor : movie.getActors()) {
+//			if (actor.getCountryOfBirth() == CountryCode.PL) {
+//				polishActorNames.add(actor.getName());
+//			}
+//		}
+//		return polishActorNames;
+
 		return movie.getActors().stream()
 				.filter(actor -> actor.getCountryOfBirth() == CountryCode.PL)
 				.map(Actor::getName)
