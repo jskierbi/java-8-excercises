@@ -13,6 +13,15 @@ public class MovieService {
 
     public List<String> actorsToActorsNames(Movie movie) {
 
+//	    List<String> actors = new ArrayList<>();
+//	    for (Actor actor : movie.getActors()) {
+//		    actors.add(actor.getName());
+//		    if (LOGGER.isDebugEnable()) {
+//			    LOGGER.debug("Find actor: " + actor.getName());
+//		    }
+//	    }
+//	    return actors;
+
 	    return movie.getActors().stream()
 			    .map(Actor::getName)
 			    .peek(a -> LOGGER.debug(() -> "Find actor: " + a))

@@ -13,6 +13,18 @@ public class MovieService {
 	public static final int NEW_MOVIE_YEAR_LIMIT = 2000;
 
 	public List<String> polishActorNamesInNewMovies(List<Movie> movies) {
+//		List<String> polishActorNames = new ArrayList<>();
+//		for (Movie movie : movies) {
+//			if (movie.getReleaseYear() > NEW_MOVIE_YEAR_LIMIT) {
+//				for (Actor actor : movie.getActors()) {
+//					if (actor.getCountryOfBirth() == CountryCode.PL) {
+//						polishActorNames.add(actor.getName());
+//					}
+//				}
+//			}
+//		}
+//		return polishActorNames;
+
 		return movies.stream()
 				.filter(movie -> movie.getReleaseYear() > NEW_MOVIE_YEAR_LIMIT)
 				.flatMap(movie -> movie.getActors().stream())

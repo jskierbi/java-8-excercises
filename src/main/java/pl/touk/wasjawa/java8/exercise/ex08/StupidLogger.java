@@ -57,6 +57,7 @@ public class StupidLogger {
         }
     }
 
+//	public void error(String msg) {
     public void error(Supplier<String> msg) {
         if (isErrorEnable()) {
             System.out.println(msg.get());
